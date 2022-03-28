@@ -19,11 +19,6 @@ public class BaseController {
     @Autowired
     UserRepo repo;
 
-    @GetMapping
-    public String greet(){
-        return "hello";
-    }
-
     @PostMapping("/save")
     public ResponseEntity<String> save(@RequestBody List<User> users){
         System.out.println("save");
@@ -32,7 +27,7 @@ public class BaseController {
     }
 
     @GetMapping("/users")
-    public ResponseEntity<UsersResponse> save(@RequestParam int from, @RequestParam int to){
+    public ResponseEntity<UsersResponse> getUsers(@RequestParam int from, @RequestParam int to){
         List<User> users = repo.findUsersByPOstalCodeRange(from,to);
         UsersResponse response = new UsersResponse();
         response.setUsers(users.stream().sorted(Comparator.comparing(User::getName)).map(User::getName).collect(Collectors.toList()));

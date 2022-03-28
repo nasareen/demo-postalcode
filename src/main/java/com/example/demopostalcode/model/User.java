@@ -23,5 +23,4 @@ public class User {
 
     private int postalCode;
 
-    // standard constructors / setters / getters / toString
 }
